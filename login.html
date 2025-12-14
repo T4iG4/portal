@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログイン - グルメポータル</title>
+    <meta name="description" content="会員限定のグルメポータルサイトへログイン">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>🍽️ Gourmet Members</h1>
+                <p>会員限定グルメポータル</p>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">ユーザー名</label>
+                    <input type="text" id="username" name="username" placeholder="ユーザー名を入力" required
+                        autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">パスワード</label>
+                    <input type="password" id="password" name="password" placeholder="パスワードを入力" required
+                        autocomplete="current-password">
+                </div>
+
+                <div class="demo-note">
+                    <p>📝 デモ用アカウント:</p>
+                    <p><strong>ユーザー名:</strong> demo / <strong>パスワード:</strong> demo</p>
+                </div>
+
+                <button type="submit" class="btn-primary">ログイン</button>
+
+                <div class="error-message" id="errorMessage"></div>
+            </form>
+
+            <div class="login-footer">
+                <p>個人別×シーン別で最適な店を見つける</p>
+            </div>
+        </div>
+
+        <div class="background-decoration">
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="circle circle-3"></div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (login(username, password)) {
+                window.location.href = 'index.html';
+            } else {
+                errorMessage.textContent = 'ユーザー名またはパスワードが正しくありません';
+                errorMessage.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+
+</html>
